@@ -1,0 +1,40 @@
+# ورودی گرفتن
+cordinates_count = int(input())
+
+# لیست مختصات
+cordinates = []
+for cordinate in range(cordinates_count):
+    cordinate = list(map(int, input().split(" ")))
+    cordinates.append(cordinate)
+
+# لیست بردارها
+vectors = []
+for cordinate in range(len(cordinates)-1):
+    x_vector = cordinates[cordinate+1][0] - cordinates[cordinate][0]
+    y_vector = cordinates[cordinate+1][1] - cordinates[cordinate][1]
+    vector = [x_vector, y_vector]
+    vectors.append(vector)
+
+# لیست زاویه ها
+angles = []  # p = positive , n = negative
+for vector in range(len(vectors)-1):
+    angle = (vectors[vector][0] * vectors[vector+1][1]) - (vectors[vector+1][0] * vectors[vector][1])
+    if angle > 0:
+        angles.append("p")
+    if angle < 0:
+        angles.append("n")
+
+# شمارش جهت های نابرابر با جهت اولین چرخش
+right_turn = angles[0]
+count_dangerous_turns = 0
+for angle in range(len(angles)):
+    if angles[angle] != right_turn:
+        count_dangerous_turns += 1
+
+# چاپ تعداد پیج های خطرناک
+print(count_dangerous_turns)
+
+
+
+
+
